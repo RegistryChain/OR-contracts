@@ -8,7 +8,7 @@ error FineCopper__TransferValueTooLow();
 contract FineCopper is ReputationToken {
     constructor(
         address _basicCopper
-    ) ReputationToken("FineCopper", "FCP", _basicCopper, msg.sender) {}
+    ) ReputationToken("FineCopper", "UPTHUMB", _basicCopper, msg.sender) {}
 
     function transfer(
         address to,

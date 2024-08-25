@@ -94,4 +94,18 @@ contract SBTTest is Test {
 
         assertEq(sbt.balanceOf(recipient, 1), 17);
     }
+
+    function testSoulboundSafeTransferFrom() public {
+        vm.expectRevert(SBT__Soulbound.selector);
+
+        vm.prank(user);
+        sbt.safeTransferFrom(user, recipient, 0, 10, "");
+    }
+
+    function testSoulboundSafeBatchTransferFrom() public {
+        vm.expectRevert(SBT__Soulbound.selector);
+
+        vm.prank(user);
+        sbt.safeBatchTransferFrom(user, recipient, new uint256[](1), new uint256[](1), "");
+    }
 }

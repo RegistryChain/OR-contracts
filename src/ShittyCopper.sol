@@ -8,7 +8,7 @@ error ShittyCopper__TransferValueTooLow();
 contract ShittyCopper is ReputationToken {
     constructor(
         address _basicCopper
-    ) ReputationToken("ShittyCopper", "SCP", _basicCopper, msg.sender) {}
+    ) ReputationToken("ShittyCopper", "DOWNTHUMB", _basicCopper, msg.sender) {}
 
     function transfer(
         address to,
