@@ -23,7 +23,7 @@ contract ShittyCopper is ReputationToken {
         address from,
         address to,
         uint256 value
-    ) public override(ReputationToken) returns (bool) {        
+    ) public override(ReputationToken) returns (bool) {
         super.transferFrom(from, to, value);
         _handleDownVote(msg.sender, to, value);
         return true;

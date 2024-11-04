@@ -15,9 +15,18 @@ contract BasicCopper is ERC20, Ownable {
     IReputationToken public shittyCopper;
     IReputationToken public fineCopper;
     address public liquidityPool;
+    mapping(address => bool) faucetMinted;
 
     constructor() ERC20("BasicCopper", "BCP") Ownable(msg.sender) {
-        _mint(msg.sender, 100000000000 * 10 ** decimals());
+        _mint(msg.sender, 100000000 * 10 ** decimals());
+    }
+
+    function mintFromFaucet() external {
+        require(faucetMinted[msg.sender] == false);
+        shittyCopper.mint(msg.sender, 1000000 * 10 ** decimals());
+        fineCopper.mint(msg.sender, 1000000 * 10 ** decimals());
+
+        faucetMinted[msg.sender] = true;
     }
 
     function setReputationTokens(
@@ -130,7 +139,10 @@ contract BasicCopper is ERC20, Ownable {
             uint256 totalSCPBalance = shittyCopper.balanceOf(from);
             uint256 totalFCPBalance = fineCopper.balanceOf(from);
 
-            if (totalSCPBalance == totalFCPBalance || (totalSCPBalance > value && totalFCPBalance > value)) {
+            if (
+                totalSCPBalance == totalFCPBalance ||
+                (totalSCPBalance > value && totalFCPBalance > value)
+            ) {
                 return (value, value);
             } else if (totalSCPBalance > totalFCPBalance) {
                 scpAmount = totalSCPBalance - value;
@@ -143,7 +155,7 @@ contract BasicCopper is ERC20, Ownable {
             return (scpAmount, fcpAmount);
         }
     }
-    
+
     event ConvertedToFineCopper(address indexed from, uint256 amount);
     event ConvertedToShittyCopper(address indexed from, uint256 amount);
 }
