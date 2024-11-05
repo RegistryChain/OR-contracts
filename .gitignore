@@ -12,3 +12,14 @@ docs/
 
 # Dotenv file
 .env
+node_modules
+artifacts
+cache
+gasreport-*
+.env
+*.DS_Store
+node_modules
+build
+forge-cache
+out
+.env.org

@@ -1,0 +1,15 @@
+{
+  "hardhat": {
+    "Uptoken": "",
+    "BasicToken": "0x810090f35dfa6b18b5eb59d298e2a2443a2811e2",
+    "DownToken": "0x2b8f5e69c35c1aff4ccc71458ca26c2f313c3ed3",
+    "UpToken": "0x9a8ec3b44ee760b629e204900c86d67414a67e8f",
+    "SBT": "0xa899118f4bccb62f8c6a37887a4f450d8a4e92e0"
+  },
+  "sepolia": {
+    "BasicToken": "0x7dce17df45374e7812a74c193b2c148054b8bef2",
+    "DownToken": "0xec4f1e2b9686cb94633fcd842d7b8ec30816085c",
+    "UpToken": "0x37c313678cd365c19dfc23388407bc6b08f9f0a0",
+    "SBT": "0x0f1d2e7566addae6712bf30b0dbc53a980859966"
+  }
+}

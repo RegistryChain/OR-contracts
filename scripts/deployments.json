@@ -1,0 +1,17 @@
+{
+    "sepolia": {
+        "registry": "0xbe24df2c3dca400be2ecd2d92b7f7e4b6100b37f",
+        "deployer":  "0xb11ab9dcc1c3736a9e1c979c873a23d9911128b7",
+        "resolver": "0x649d82b9c969ed5f1b899c3440f41a6b24f16f16",
+        "countryRegistrar": "0xac695323431c1201505956378809600b1c91a508",
+        "jurisdictionRegistrar-US": "0xa8fba2171399d3326cf4f8bbe80c94d979bfe9b7",
+        "entityRegistrar-DL": "0x32e9266eb5b61ba355dc22bb50828e3bbfef115d",
+        "entityRegistrar-WY": "0x71ed14654c85609c444a0c56b1580acd24e20c04",
+        "jurisdictionRegistrar-UK": "0x4FF4cF28C2D5D0978beEcCED517fb1085DDCfC46",
+        "entityRegistrar-BVI": "0xf940054296c0de06ac0d5163eb0240f98c7b1074",
+        "jurisdictionRegistrar-PUB": "0xd940ef5fe1b3968eb94c977a904a164d324a2cf3",
+        "entityRegistrar-CORP": "0x123ac088458a15dc162f160c396f764288742b26",
+        "entityRegistrar-CIV": "0x7b5ca5d3c9b1dc921bd5f37d593407cf3d789d6a"
+        
+    }
+}
