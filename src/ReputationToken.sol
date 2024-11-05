@@ -23,6 +23,28 @@ abstract contract ReputationToken is IReputationToken, ERC20, Ownable {
 
     mapping(address => TokensEscrowed[]) public tokensEscrowed;
 
+    mapping(address => uint256) public targetNonce; //targetNonce[target] += 1
+    mapping(address => mapping(uint256 => address))
+        public targetToSenderByNonce; //targetToSenderByNonce[target][targetNonce] = sender - for looping sender/target pairs
+    mapping(address => mapping(address => uint256)) public senderToTargetRating; //senderToTargetRating[sender][target] = balance
+
+    // May need to record weights/weight factors at time of rating. Or could be current weight? Depends on how we want to score
+
+    function getSenderRatingsListForTarget(
+        address target
+    ) external view returns (address[] memory, uint256[] memory) {
+        uint256 count = targetNonce[target];
+        address[] memory senders = new address[](count);
+        uint256[] memory ratings = new uint256[](count);
+        for (uint256 i = 1; i <= count; i++) {
+            address sender = targetToSenderByNonce[target][i];
+            uint256 rating = senderToTargetRating[sender][target];
+            senders[i] = sender;
+            ratings[i] = rating;
+        }
+        return (senders, ratings);
+    }
+
     modifier onlyBasicCopper() {
         if (msg.sender != address(basicCopper)) {
             revert ReputationToken__NotBasicCopper();
@@ -81,6 +103,11 @@ abstract contract ReputationToken is IReputationToken, ERC20, Ownable {
         uint256 value
     ) public virtual override(ERC20, IERC20) returns (bool) {
         _maybeReleaseEscrowedTokens();
+        if (senderToTargetRating[from][to] == 0) {
+            targetNonce[to] += 1;
+            targetToSenderByNonce[to][targetNonce[to]] = from;
+        }
+        senderToTargetRating[from][to] += value;
 
         if (msg.sender == address(basicCopper)) {
             super._transfer(from, to, value);
